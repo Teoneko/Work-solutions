@@ -6,7 +6,7 @@ for (let sliderContain of sliderContains) {
 	let isDown = false;
 	let startX;
 	let scrollLeft;
-	let isUpTimer = null;
+	let isUpTimer;
 	let isUp = true;
 	let clickButton;
 
@@ -32,7 +32,7 @@ for (let sliderContain of sliderContains) {
 		if (!isDown) return;
 		e.preventDefault();
 		const x = e.pageX - slider.offsetLeft;
-		const walk = (x - startX) * 3; //scroll-fast
+		const walk = (x - startX) * 3; //scroll-speed
 		slider.scrollLeft = scrollLeft - walk;
 	});
 	slider.querySelectorAll("*").forEach(function (e) {
@@ -43,30 +43,32 @@ for (let sliderContain of sliderContains) {
 			isUp || e.preventDefault()
 		});
 	});
-	sliderNext.addEventListener('pointerdown', function next(){
-		slider.scrollLeft += 5;
-		clickButton = setTimeout(next, 0);
+	sliderNext.addEventListener('pointerdown', function(e){
+		clickButton = setInterval(function(){
+			slider.scrollLeft += 5; //scroll-speed
+		}, 0);
 	});
 	sliderNext.addEventListener('touchstart', function(e){
 		e.preventDefault();
 	})
 	sliderNext.addEventListener('pointerup', function(){
-		clearTimeout(clickButton);
+		clearInterval(clickButton);
 	});
 	sliderNext.addEventListener('pointerleave', function(){
-		clearTimeout(clickButton);
+		clearInterval(clickButton);
 	});
-	sliderPrev.addEventListener('pointerdown', function prev(){
-		slider.scrollLeft -= 5;
-		clickButton = setTimeout(prev, 0);
+	sliderPrev.addEventListener('pointerdown', function (e){
+		clickButton = setInterval(function(){
+			slider.scrollLeft -= 5;
+		}, 0);
 	});
 	sliderPrev.addEventListener('touchstart', function(e){
 		e.preventDefault();
 	})
 	sliderPrev.addEventListener('pointerup', function(){
-		clearTimeout(clickButton);
+		clearInterval(clickButton);
 	});
 	sliderPrev.addEventListener('pointerleave', function(){
-		clearTimeout(clickButton);
+		clearInterval(clickButton);
 	});
 }
