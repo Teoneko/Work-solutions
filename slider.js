@@ -50,7 +50,7 @@ for (let sliderContain of sliderContains) {
 	});
 	sliderNext.addEventListener('touchstart', function(e){
 		e.preventDefault();
-	})
+	},{passive: false})
 	sliderNext.addEventListener('pointerup', function(){
 		clearInterval(clickButton);
 	});
@@ -64,7 +64,7 @@ for (let sliderContain of sliderContains) {
 	});
 	sliderPrev.addEventListener('touchstart', function(e){
 		e.preventDefault();
-	})
+	},{passive: false})
 	sliderPrev.addEventListener('pointerup', function(){
 		clearInterval(clickButton);
 	});
