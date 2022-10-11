@@ -1,10 +1,9 @@
 function addSlider() {
-	setTimeout(function() {
-	const sliderContains = document.querySelectorAll('.slider-contain');
+	const sliderContains = document.querySelectorAll('.slider');
 	for (let sliderContain of sliderContains) {
 		let sliderPrev = sliderContain.querySelector('.slider-prev');
 		let sliderNext = sliderContain.querySelector('.slider-next');
-		let slider = sliderContain.querySelector('.slider');
+		let slider = sliderContain.querySelector('.slider>ul');
 		let isDown = false;
 		let startX;
 		let scrollLeft;
@@ -74,6 +73,10 @@ function addSlider() {
 			clearInterval(clickButton);
 		});
 	}
-},1000)
 }
-window.addEventListener('load', addSlider);
+
+function addSliderWithDelay() {
+	setTimeout(addSlider, 500);
+}
+
+window.addEventListener('load', addSliderWithDelay);
